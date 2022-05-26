@@ -86,19 +86,20 @@
               SiKumsol 📚</span>
           </h1>
           <h2 class="mb-5 text-lg font-medium text-secondary lg:text-2xl"> (Sistem Informasi Kumpulan Soal)</h2>
-          <p class="mb-5 font-medium leading-relaxed text-secondary"> Download dan share soal-soal yang kamu butuhkan
+          <p class="mb-3 ml-1 font-medium leading-relaxed text-secondary"> Download dan share soal-soal yang kamu
+            butuhkan
             disini.</p>
           <a href="#download"
             class="rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-300 ease-in-out hover:opacity-80 hover:shadow-lg">Download</a>
         </div>
         <div class="w-full self-end px-4 lg:w-1/2">
           <div class="relative mt-10 lg:right-0 lg:mt-9">
-            <h4 class="rounded-full mb-3 p-1 text-center text-base font-semibold text-primary">Yuk, DONASI SiKumsol 📚
+            <h4 class="rounded-full mb-1 p-1 text-center text-base font-semibold text-primary">Yuk, DONASI SiKumsol 📚
               Scan / Klik <a
-                class="rounded-full bg-primary mt-1 p-2 text-center text-base font-semibold text-white transition duration-300 ease-in-out hover:opacity-80 hover:shadow-lg"
+                class="rounded-full bg-primary ml-1 p-1 text-center text-base font-semibold text-white transition duration-300 ease-in-out hover:opacity-80 hover:shadow-lg animate-pulse"
                 target="_blank" href="https://saweria.co/SiKumso">Go!</a>
             </h4>
-            <img src="dist/img/frame.png" class="relative z-10 mx-auto max-w-full" />
+            <img src="dist/img/frame.png" class="relative w-40 z-10 mx-auto max-w-full" />
           </div>
         </div>
       </div>
@@ -107,7 +108,7 @@
   <!-- Hero Section End -->
 
   <!-- Blog Section Start -->
-  <section id="download" class="bg-slate-100 pt-36 pb-32 dark:bg-dark">
+  <section id="download" class="bg-slate-100 pt-20 pb-32 dark:bg-dark">
     <div class="container">
       <div class="w-full px-4">
         <div class="mx-auto mb-16 max-w-xl text-center">
@@ -209,25 +210,25 @@
         </div>
       </div>
 
-      <form>
+      <form name="submit-to-google-sheet">
         <div class="w-full lg:mx-auto lg:w-2/3">
           <div class="mb-8 w-full px-4">
             <label for="name" class="text-base font-bold text-primary">Nama</label>
-            <input type="text" id="name"
+            <input type="text" id="name" name="nama"
               class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
           </div>
           <div class="mb-8 w-full px-4">
             <label for="email" class="text-base font-bold text-primary">Email</label>
-            <input type="email" id="email"
+            <input type="email" id="email" name="email"
               class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
           </div>
           <div class="mb-8 w-full px-4">
             <label for="message" class="text-base font-bold text-primary">Pesan</label>
-            <textarea type="email" id="email"
+            <textarea type="email" id="email" name="pesan"
               class="h-32 w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
           </div>
           <div class="w-full px-4">
-            <button
+            <button type="submit"
               class="w-full rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-500 hover:opacity-80 hover:shadow-lg">
               Kirim
             </button>
@@ -348,6 +349,19 @@
   <!-- Back to top End -->
 
   <script src="dist/js/script.js"></script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxZYf3BpbFFhAn7RbQ1k5JoNho52zchO77C3V5vAphmUJ624-aMZZcGLFUf3XD_NJLR/exec'
+    const form = document.forms['submit-to-google-sheet']
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
 </body>
 
 </html>
